@@ -43,8 +43,8 @@ int main() {
     for (;;) {
         // Render
         gl::clear_frame({
-            gl::enums::general::COLOR_BUFFER_BIT,
-            gl::enums::general::DEPTH_BUFFER_BIT
+            gl::enums::clear_frame_option::COLOR,
+            gl::enums::clear_frame_option::DEPTH
         });
 
         glfwSwapBuffers(win);

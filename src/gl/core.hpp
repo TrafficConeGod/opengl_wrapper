@@ -1,6 +1,7 @@
 #pragma once
 #include "enums/general.hpp"
 #include "enums/toggle.hpp"
+#include "enums/clear_frame_option.hpp"
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <initializer_list>
@@ -28,7 +29,7 @@ namespace gl {
         glBindVertexArray(vertex_array_id);
     }
 
-    inline void clear_frame(std::initializer_list<enums::general> options) {
+    inline void clear_frame(std::initializer_list<enums::clear_frame_option> options) {
         GLbitfield mask = 0;
         for (auto option : options) {
             mask |= (GLbitfield)option;
