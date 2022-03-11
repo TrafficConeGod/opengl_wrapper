@@ -2,8 +2,11 @@
 #include "gl/core.hpp"
 #include "gl/shader_program.hpp"
 #include "gl/io/read_file.hpp"
+#include "gl/buffer.hpp"
+#include "gl/vertex_attribute_array.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
+#include <vector>
 
 int main() {
     if (!glfwInit()) {
@@ -50,6 +53,15 @@ int main() {
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
+    std::vector<float> vertices = {
+        -0.5f, -0.5f,
+         0.5f, -0.5f,
+         0.5f,  0.5f,
+        -0.5f,  0.5f,
+    };
+
+    gl::buffer vertex_pos_buffer;
+
     for (;;) {
         // Render
         gl::clear_frame({
@@ -58,6 +70,9 @@ int main() {
         });
 
         program.use();
+
+        gl::vertex_attribute_array vertex_pos_array(0);
+        vertex_pos_array.set_data(vertex_pos_buffer, vertices);
 
         glfwSwapBuffers(win);
 	    glfwPollEvents();
