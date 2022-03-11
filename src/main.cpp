@@ -23,12 +23,29 @@ int main() {
     glew::set_experimental(true);
     glew::init();
 
-    // glfwSetInputMode(win, GLFW_STICKY_KEYS, GL_TRUE);
-	// glfwSetInputMode(win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(win, GLFW_STICKY_KEYS, GL_TRUE);
+
+    {
+        using namespace gl;
+        using namespace enums;
+        enable(toggle::DEPTH_TEST);
+        enable(toggle::CULL_FACE);
+        enable(toggle::BLEND);
+
+        set_depth_func(general::LESS);
+        set_blend_func(general::SRC_ALPHA, general::ONE_MINUS_SRC_ALPHA);
+
+        set_clear_color(glm::vec3(44.f/256.f, 157.f/256.f, 222.f/256.f));
+    }
+
+    gl::gen_vertex_arrays();
 
     for (;;) {
         // Render
-        //
+        gl::clear_frame({
+            gl::enums::general::COLOR_BUFFER_BIT,
+            gl::enums::general::DEPTH_BUFFER_BIT
+        });
 
         glfwSwapBuffers(win);
 	    glfwPollEvents();
