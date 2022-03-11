@@ -57,6 +57,8 @@ int main() {
             gl::enums::clear_frame_option::DEPTH
         });
 
+        program.use();
+
         glfwSwapBuffers(win);
 	    glfwPollEvents();
 
