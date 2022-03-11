@@ -1,7 +1,7 @@
 #pragma once
 
 namespace gl::enums {
-    enum toggle : unsigned int {
+    enum toggle : GLenum {
         POINT_SMOOTH = 0x0B10,
         LINE_SMOOTH = 0x0B20,
         LINE_STIPPLE = 0x0B24,

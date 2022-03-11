@@ -1,7 +1,7 @@
 #pragma once
 
 namespace gl::enums {
-    enum class general : unsigned int {
+    enum class general : GLenum {
         ZERO = 0,
         FALSE = 0,
         LOGIC_OP = 0x0BF1,
