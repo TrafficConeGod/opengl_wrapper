@@ -1,5 +1,7 @@
 #include "glew/glew.hpp"
 #include "gl/core.hpp"
+#include "gl/shader_program.hpp"
+#include "gl/io/read_file.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 
@@ -39,6 +41,14 @@ int main() {
 
         gen_vertex_arrays(1);
     }
+
+    gl::shader_program program(
+        gl::io::read_file("shaders/vert.glsl"),
+        gl::io::read_file("shaders/frag.glsl")
+    );
+    // auto texture = gl::io::load_texture<bmp_32_bpp_a8_r8_g8_b8>(program, "textures/test.bmp");
+    // gl::uniform matrix_uniform(program, "mvp");
+    // gl::uniform texture_uniform(program, "texture_sampler");
 
     for (;;) {
         // Render
