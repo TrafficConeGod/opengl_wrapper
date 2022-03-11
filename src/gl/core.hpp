@@ -23,9 +23,9 @@ namespace gl {
         glClearColor(color.a, color.r, color.g, color.w);
     }
     
-    inline void gen_vertex_arrays() {
+    inline void gen_vertex_arrays(std::size_t count) {
         GLuint vertex_array_id;
-        glGenVertexArrays(1, &vertex_array_id);
+        glGenVertexArrays(count, &vertex_array_id);
         glBindVertexArray(vertex_array_id);
     }
 

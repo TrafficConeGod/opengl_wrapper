@@ -36,9 +36,9 @@ int main() {
         set_blend_func(general::SRC_ALPHA, general::ONE_MINUS_SRC_ALPHA);
 
         set_clear_color(glm::vec3(44.f/256.f, 157.f/256.f, 222.f/256.f));
-    }
 
-    gl::gen_vertex_arrays();
+        gen_vertex_arrays(1);
+    }
 
     for (;;) {
         // Render
