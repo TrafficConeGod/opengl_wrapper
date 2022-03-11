@@ -36,4 +36,8 @@ namespace gl {
         }
         glClear(mask);
     }
+
+    inline void draw_attribute_arrays(enums::general mode, GLsizei count) {
+        glDrawArrays((GLenum)mode, 0, count);
+    }
 }

@@ -54,10 +54,15 @@ int main() {
     // gl::uniform texture_uniform(program, "texture_sampler");
 
     std::vector<float> vertices = {
-        -0.5f, -0.5f,
-         0.5f, -0.5f,
-         0.5f,  0.5f,
-        -0.5f,  0.5f,
+        //
+        -1, -1,
+        1, -1,
+        -1, 1,
+        //
+        1, 1,
+        1, -1,
+        -1, 1,
+        //
     };
 
     gl::buffer vertex_pos_buffer;
@@ -73,6 +78,8 @@ int main() {
 
         gl::vertex_attribute_array vertex_pos_array(0);
         vertex_pos_array.set_data(vertex_pos_buffer, vertices);
+
+        gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
 
         glfwSwapBuffers(win);
 	    glfwPollEvents();
