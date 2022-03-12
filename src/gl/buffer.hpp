@@ -1,9 +1,9 @@
 #pragma once
-#include <GL/glew.h>
+#include "types.hpp"
 
 namespace gl {
     class buffer {
-        GLuint id;
+        gl::uint id;
         public:
             inline buffer() {
                 glGenBuffers(1, &id);

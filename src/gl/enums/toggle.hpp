@@ -1,7 +1,8 @@
 #pragma once
+#include "types.hpp"
 
 namespace gl::enums {
-    enum toggle : GLenum {
+    enum toggle : gl::enum_ {
         POINT_SMOOTH = 0x0B10,
         LINE_SMOOTH = 0x0B20,
         LINE_STIPPLE = 0x0B24,

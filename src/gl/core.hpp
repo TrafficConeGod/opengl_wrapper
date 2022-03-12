@@ -2,19 +2,19 @@
 #include "enums/general.hpp"
 #include "enums/toggle.hpp"
 #include "enums/clear_frame_option.hpp"
-#include <GL/glew.h>
+#include "types.hpp"
 #include <glm/glm.hpp>
 #include <initializer_list>
 
 namespace gl {
     inline void enable(enums::toggle toggle) {
-        glEnable((GLenum)toggle);
+        glEnable((gl::enum_)toggle);
     }
     inline void set_depth_func(enums::general func) {
-        glDepthFunc((GLenum)func);
+        glDepthFunc((gl::enum_)func);
     }
     inline void set_blend_func(enums::general src, enums::general dst) {
-        glBlendFunc((GLenum)src, (GLenum)dst);
+        glBlendFunc((gl::enum_)src, (gl::enum_)dst);
     }
     inline void set_clear_color(glm::vec3 color) {
         glClearColor(color.r, color.g, color.b, 0.0f);
@@ -24,20 +24,20 @@ namespace gl {
     }
     
     inline void gen_vertex_arrays(std::size_t count) {
-        GLuint vertex_array_id;
+        gl::uint vertex_array_id;
         glGenVertexArrays(count, &vertex_array_id);
         glBindVertexArray(vertex_array_id);
     }
 
     inline void clear_frame(std::initializer_list<enums::clear_frame_option> options) {
-        GLbitfield mask = 0;
+        gl::bit_field mask = 0;
         for (auto option : options) {
-            mask |= (GLbitfield)option;
+            mask |= (gl::bit_field)option;
         }
         glClear(mask);
     }
 
-    inline void draw_attribute_arrays(enums::general mode, GLsizei count) {
-        glDrawArrays((GLenum)mode, 0, count);
+    inline void draw_attribute_arrays(enums::general mode, gl::size_t count) {
+        glDrawArrays((gl::enum_)mode, 0, count);
     }
 }

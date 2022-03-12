@@ -4,13 +4,13 @@
 
 namespace gl {
     class vertex_attribute_array {
-        GLuint layout_position;
+        gl::uint layout_position;
 
         template<typename T>
-        inline void set_vertex_attrib_pointer(GLuint dim) = delete;
+        inline void set_vertex_attrib_pointer(gl::uint dim) = delete;
 
         public:
-            inline vertex_attribute_array(GLuint layout_position) : layout_position(layout_position) {
+            inline vertex_attribute_array(gl::uint layout_position) : layout_position(layout_position) {
                 glEnableVertexAttribArray(layout_position);
             }
             inline ~vertex_attribute_array() {
@@ -19,7 +19,7 @@ namespace gl {
             vertex_attribute_array(const vertex_attribute_array&) = delete;
             vertex_attribute_array& operator=(const vertex_attribute_array&) = delete;
 
-            template<GLuint dim, typename Underlying_Data_Type, typename High_Level_Data_Type>
+            template<gl::uint dim, typename Underlying_Data_Type, typename High_Level_Data_Type>
             void set_data(const buffer& buf, const std::vector<High_Level_Data_Type>& data) {
                 buf.bind();
                 glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(High_Level_Data_Type), data.data(), GL_STATIC_DRAW);
@@ -29,6 +29,6 @@ namespace gl {
 }
 
 template<>
-inline void gl::vertex_attribute_array::set_vertex_attrib_pointer<float>(GLuint dim) {
+inline void gl::vertex_attribute_array::set_vertex_attrib_pointer<float>(gl::uint dim) {
     glVertexAttribPointer(layout_position, dim, GL_FLOAT, GL_FALSE, 0, 0);
 }

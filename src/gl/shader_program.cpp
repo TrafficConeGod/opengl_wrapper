@@ -2,15 +2,15 @@
 using namespace gl;
 #include <stdexcept>
 
-template<GLuint type>
-inline GLuint load_shader(std::string_view source) {
-    GLuint id = glCreateShader(type);
+template<gl::enum_ type>
+inline gl::uint load_shader(std::string_view source) {
+    gl::uint id = glCreateShader(type);
     auto data = source.data();
     glShaderSource(id, 1, &data, nullptr);
     glCompileShader(id);
 
     // Check for errors
-    GLint result = GL_NO_ERROR;
+    gl::int_ result = GL_NO_ERROR;
     int info_log_length;
     
     glGetShaderiv(id, GL_COMPILE_STATUS, &result);
@@ -35,7 +35,7 @@ shader_program::shader_program(std::string_view vert_source, std::string_view fr
     glLinkProgram(id);
 
     // Check for errors
-    GLint result = GL_NO_ERROR;
+    gl::int_ result = GL_NO_ERROR;
     int info_log_length;
 
     glGetProgramiv(id, GL_LINK_STATUS, &result);

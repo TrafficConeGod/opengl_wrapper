@@ -1,7 +1,8 @@
 #pragma once
+#include "types.hpp"
 
 namespace gl::enums {
-    enum class general : GLenum {
+    enum class general : gl::enum_ {
         ZERO = 0,
         FALSE = 0,
         LOGIC_OP = 0x0BF1,
