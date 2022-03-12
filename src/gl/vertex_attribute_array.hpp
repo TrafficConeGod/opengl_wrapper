@@ -6,7 +6,7 @@ namespace gl {
     class vertex_attribute_array {
         GLuint layout_position;
         public:
-            inline vertex_attribute_array(GLuint layout_position) {
+            inline vertex_attribute_array(GLuint layout_position) : layout_position(layout_position) {
                 glEnableVertexAttribArray(layout_position);
             }
             inline ~vertex_attribute_array() {
