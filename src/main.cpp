@@ -65,7 +65,20 @@ int main() {
         //
     };
 
+    std::vector<glm::vec2> uvs = {
+        //
+        glm::vec2(0, 0),
+        glm::vec2(1, 0),
+        glm::vec2(0, 1),
+        //
+        glm::vec2(0, 1),
+        glm::vec2(1, 0),
+        glm::vec2(1, 1)
+        //
+    };
+
     gl::buffer vertex_pos_buffer;
+    gl::buffer vertex_uv_buffer;
 
     for (;;) {
         // Render
@@ -79,6 +92,9 @@ int main() {
         {
             gl::vertex_attribute_array vertex_pos_array(0);
             vertex_pos_array.set_data<2, float>(vertex_pos_buffer, vertices);
+
+            gl::vertex_attribute_array vertex_uv_array(1);
+            vertex_uv_array.set_data<2, float>(vertex_uv_buffer, uvs);
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
