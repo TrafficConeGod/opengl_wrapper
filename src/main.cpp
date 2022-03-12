@@ -53,7 +53,7 @@ int main() {
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
-    std::vector<glm::vec2> vertices = {
+    auto vertices = {
         //
         glm::vec2(-1, -1),
         glm::vec2(1, -1),
@@ -65,7 +65,7 @@ int main() {
         //
     };
 
-    std::vector<glm::vec2> uvs = {
+    auto uvs = {
         //
         glm::vec2(0, 0),
         glm::vec2(1, 0),
@@ -91,10 +91,10 @@ int main() {
 
         {
             gl::vertex_attribute_array vertex_pos_array(0);
-            vertex_pos_array.set_data<float>(2, vertex_pos_buf_obj, gl::make_view<glm::vec2>(vertices));
+            vertex_pos_array.set_data<float>(2, vertex_pos_buf_obj, gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
 
             gl::vertex_attribute_array vertex_uv_array(1);
-            vertex_uv_array.set_data<float>(2, vertex_uv_buf_obj, gl::make_view<glm::vec2>(uvs));
+            vertex_uv_array.set_data<float>(2, vertex_uv_buf_obj, gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
