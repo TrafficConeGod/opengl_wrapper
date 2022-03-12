@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+#include <vector>
+#include <stdexcept>
 
 namespace gl {
     template<typename T>

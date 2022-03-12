@@ -89,11 +89,11 @@ int main() {
         program.use();
 
         {
-            gl::vertex_attribute_array vertex_pos_array(0);
-            vertex_pos_array.set_data<float>(2, vertex_pos_buf_obj, gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
+            vertex_pos_buf_obj.set_data(gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
+            gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf_obj);
 
-            gl::vertex_attribute_array vertex_uv_array(1);
-            vertex_uv_array.set_data<float>(2, vertex_uv_buf_obj, gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
+            vertex_uv_buf_obj.set_data(gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
+            gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf_obj);
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }

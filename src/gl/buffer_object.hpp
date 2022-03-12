@@ -1,5 +1,6 @@
 #pragma once
 #include "types.hpp"
+#include "view.hpp"
 
 namespace gl {
     class buffer_object {
@@ -13,6 +14,12 @@ namespace gl {
 
             inline void bind() const {
                 glBindBuffer(GL_ARRAY_BUFFER, id);
+            }
+
+            template<typename T>
+            inline void set_data(gl::view<T> data_view) {
+                bind();
+                glBufferData(GL_ARRAY_BUFFER, data_view.size() * sizeof(T), data_view.data(), GL_STATIC_DRAW);
             }
     };
 }
