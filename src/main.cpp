@@ -76,15 +76,6 @@ int main() {
 
         program.use();
 
-        // glEnableVertexAttribArray(0);
-        // vertex_pos_buffer.bind();
-        // glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
-        // glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-        
-        // gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
-
-        // glDisableVertexAttribArray(0);
-
         {
             gl::vertex_attribute_array vertex_pos_array(0);
             vertex_pos_array.set_data(vertex_pos_buffer, vertices);
