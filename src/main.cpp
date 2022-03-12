@@ -78,7 +78,7 @@ int main() {
 
         {
             gl::vertex_attribute_array vertex_pos_array(0);
-            vertex_pos_array.set_data(vertex_pos_buffer, vertices);
+            vertex_pos_array.set_data<2, float>(vertex_pos_buffer, vertices);
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
