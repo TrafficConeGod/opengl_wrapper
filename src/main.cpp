@@ -91,10 +91,10 @@ int main() {
 
         {
             gl::vertex_attribute_array vertex_pos_array(0);
-            vertex_pos_array.set_data<float>(2, vertex_pos_buf_obj, gsl::make_span(vertices));
+            vertex_pos_array.set_data<float>(2, vertex_pos_buf_obj, gl::view(vertices));
 
             gl::vertex_attribute_array vertex_uv_array(1);
-            vertex_uv_array.set_data<float>(2, vertex_uv_buf_obj, gsl::make_span(uvs));
+            vertex_uv_array.set_data<float>(2, vertex_uv_buf_obj, gl::view(uvs));
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
