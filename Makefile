@@ -1,6 +1,6 @@
 OBJECTS = $(patsubst %.cpp,%.o, $(shell find ./src/ -name *.cpp))
 CC = g++
-CFLAGS = -c -I src -Wall -std=c++17 -g
+CFLAGS = -c -I src -I lib -Wall -std=c++17 -g
 
 LDFLAGS = -pthread -lfmt -lGL -lglut -lGLEW -lglfw -lm -lX11 -lpthread -lXi -lXrandr
 

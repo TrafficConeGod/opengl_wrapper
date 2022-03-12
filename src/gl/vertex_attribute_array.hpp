@@ -1,6 +1,6 @@
 #pragma once
 #include "buffer_object.hpp"
-#include <vector>
+#include <gsl/span>
 
 namespace gl {
     class vertex_attribute_array {
@@ -20,9 +20,9 @@ namespace gl {
             vertex_attribute_array& operator=(const vertex_attribute_array&) = delete;
 
             template<typename Underlying_Data_Type, typename High_Level_Data_Type>
-            void set_data(gl::uint dim, const buffer_object& buf_obj, const std::vector<High_Level_Data_Type>& data) {
+            void set_data(gl::uint dim, const buffer_object& buf_obj, gsl::span<High_Level_Data_Type> data_span) {
                 buf_obj.bind();
-                glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(High_Level_Data_Type), data.data(), GL_STATIC_DRAW);
+                glBufferData(GL_ARRAY_BUFFER, data_span.size() * sizeof(High_Level_Data_Type), data_span.data(), GL_STATIC_DRAW);
                 set_vertex_attrib_pointer<Underlying_Data_Type>(dim);
             }
     };
