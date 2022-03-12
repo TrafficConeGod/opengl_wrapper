@@ -4,6 +4,7 @@
 #include "gl/io/read_file.hpp"
 #include "gl/buffer_object.hpp"
 #include "gl/vertex_attribute_array.hpp"
+#include "gl/uniform.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 
@@ -52,6 +53,9 @@ int main() {
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
+    glm::vec2 color_shift_value(0.f, 0.f);
+    gl::uniform<glm::vec2> color_shift_uniform(program, "color_shift_value");
+
     auto vertices = {
         //
         glm::vec2(-1, -1),
@@ -90,6 +94,9 @@ int main() {
         });
 
         program.use();
+
+        color_shift_value.x += 0.005f;
+        color_shift_uniform.set(color_shift_value);
 
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf_obj);

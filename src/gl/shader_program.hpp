@@ -13,5 +13,9 @@ namespace gl {
             inline void use() {
                 glUseProgram(id);
             }
+            
+            inline gl::uint get_id() {
+                return id;
+            }
     };
 }
