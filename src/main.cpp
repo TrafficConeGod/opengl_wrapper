@@ -53,15 +53,15 @@ int main() {
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
-    std::vector<float> vertices = {
+    std::vector<glm::vec2> vertices = {
         //
-        -1, -1,
-        1, -1,
-        -1, 1,
+        glm::vec2(-1, -1),
+        glm::vec2(1, -1),
+        glm::vec2(-1, 1),
         //
-        -1, 1,
-        1, -1,
-        1, 1
+        glm::vec2(-1, 1),
+        glm::vec2(1, -1),
+        glm::vec2(1, 1)
         //
     };
 
