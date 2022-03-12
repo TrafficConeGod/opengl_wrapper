@@ -2,14 +2,14 @@
 #include "types.hpp"
 
 namespace gl {
-    class buffer {
+    class buffer_object {
         gl::uint id;
         public:
-            inline buffer() {
+            inline buffer_object() {
                 glGenBuffers(1, &id);
             }
-            buffer(const buffer&) = delete;
-            buffer& operator=(const buffer&) = delete;
+            buffer_object(const buffer_object&) = delete;
+            buffer_object& operator=(const buffer_object&) = delete;
 
             inline void bind() const {
                 glBindBuffer(GL_ARRAY_BUFFER, id);

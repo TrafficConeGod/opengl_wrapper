@@ -2,7 +2,7 @@
 #include "gl/core.hpp"
 #include "gl/shader_program.hpp"
 #include "gl/io/read_file.hpp"
-#include "gl/buffer.hpp"
+#include "gl/buffer_object.hpp"
 #include "gl/vertex_attribute_array.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
@@ -77,8 +77,8 @@ int main() {
         //
     };
 
-    gl::buffer vertex_pos_buffer;
-    gl::buffer vertex_uv_buffer;
+    gl::buffer_object vertex_pos_buf_obj;
+    gl::buffer_object vertex_uv_buf_obj;
 
     for (;;) {
         // Render
@@ -91,10 +91,10 @@ int main() {
 
         {
             gl::vertex_attribute_array vertex_pos_array(0);
-            vertex_pos_array.set_data<float>(2, vertex_pos_buffer, vertices);
+            vertex_pos_array.set_data<float>(2, vertex_pos_buf_obj, vertices);
 
             gl::vertex_attribute_array vertex_uv_array(1);
-            vertex_uv_array.set_data<float>(2, vertex_uv_buffer, uvs);
+            vertex_uv_array.set_data<float>(2, vertex_uv_buf_obj, uvs);
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
