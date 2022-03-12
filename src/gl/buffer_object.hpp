@@ -3,6 +3,7 @@
 #include "view.hpp"
 
 namespace gl {
+    template<typename T>
     class buffer_object {
         gl::uint id;
         public:
@@ -16,7 +17,6 @@ namespace gl {
                 glBindBuffer(GL_ARRAY_BUFFER, id);
             }
 
-            template<typename T>
             inline void set_data(gl::view<T> data_view) {
                 bind();
                 glBufferData(GL_ARRAY_BUFFER, data_view.size() * sizeof(T), data_view.data(), GL_STATIC_DRAW);

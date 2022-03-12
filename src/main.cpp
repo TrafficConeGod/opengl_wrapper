@@ -80,11 +80,11 @@ int main() {
         //
     };
 
-    gl::buffer_object vertex_pos_buf_obj;
-    vertex_pos_buf_obj.set_data(gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
+    gl::buffer_object<glm::vec2> vertex_pos_buf;
+    vertex_pos_buf.set_data(gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
 
-    gl::buffer_object vertex_uv_buf_obj;
-    vertex_uv_buf_obj.set_data(gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
+    gl::buffer_object<glm::vec2> vertex_uv_buf;
+    vertex_uv_buf.set_data(gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
 
     for (;;) {
         // Render
@@ -99,9 +99,9 @@ int main() {
         color_shift_uniform.set(color_shift_value);
 
         {
-            gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf_obj);
+            gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);
 
-            gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf_obj);
+            gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf);
 
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
