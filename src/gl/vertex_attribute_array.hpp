@@ -19,8 +19,8 @@ namespace gl {
             vertex_attribute_array(const vertex_attribute_array&) = delete;
             vertex_attribute_array& operator=(const vertex_attribute_array&) = delete;
 
-            template<gl::uint dim, typename Underlying_Data_Type, typename High_Level_Data_Type>
-            void set_data(const buffer& buf, const std::vector<High_Level_Data_Type>& data) {
+            template<typename Underlying_Data_Type, typename High_Level_Data_Type>
+            void set_data(gl::uint dim, const buffer& buf, const std::vector<High_Level_Data_Type>& data) {
                 buf.bind();
                 glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(High_Level_Data_Type), data.data(), GL_STATIC_DRAW);
                 set_vertex_attrib_pointer<Underlying_Data_Type>(dim);
