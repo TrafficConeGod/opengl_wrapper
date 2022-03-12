@@ -1,9 +1,5 @@
 #pragma once
 #include <cstdint>
-#include <vector>
-#include <array>
-#include <string>
-#include <initializer_list>
 
 namespace gl {
     template<typename T>
