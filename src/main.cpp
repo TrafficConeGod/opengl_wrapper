@@ -2,7 +2,7 @@
 #include "gl/core.hpp"
 #include "gl/shader_program.hpp"
 #include "gl/io/read_file.hpp"
-#include "gl/buffer_object.hpp"
+#include "gl/buffer.hpp"
 #include "gl/vertex_attribute_array.hpp"
 #include "gl/uniform.hpp"
 #include <GLFW/glfw3.h>
@@ -80,10 +80,10 @@ int main() {
         //
     };
 
-    gl::buffer_object<glm::vec2> vertex_pos_buf;
+    gl::buffer<glm::vec2> vertex_pos_buf;
     vertex_pos_buf.set_data(gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
 
-    gl::buffer_object<glm::vec2> vertex_uv_buf;
+    gl::buffer<glm::vec2> vertex_uv_buf;
     vertex_uv_buf.set_data(gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
 
     program.use();

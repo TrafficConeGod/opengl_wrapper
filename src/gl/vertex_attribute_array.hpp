@@ -1,5 +1,5 @@
 #pragma once
-#include "buffer_object.hpp"
+#include "buffer.hpp"
 #include "view.hpp"
 
 namespace gl {
@@ -21,7 +21,7 @@ namespace gl {
                 set_vertex_attrib_pointer<T>(layout_position, dim);
             }
             template<typename B>
-            inline vertex_attribute_array(gl::uint layout_position, gl::uint dim, const buffer_object<B>& buf_obj) : layout_position(layout_position) {
+            inline vertex_attribute_array(gl::uint layout_position, gl::uint dim, const buffer<B>& buf_obj) : layout_position(layout_position) {
                 buf_obj.bind();
                 glEnableVertexAttribArray(layout_position);
                 set_vertex_attrib_pointer<T>(layout_position, dim);

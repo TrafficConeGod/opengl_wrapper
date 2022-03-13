@@ -4,14 +4,14 @@
 
 namespace gl {
     template<typename T>
-    class buffer_object {
+    class buffer {
         gl::uint id;
         public:
-            inline buffer_object() {
+            inline buffer() {
                 glGenBuffers(1, &id);
             }
-            buffer_object(const buffer_object&) = delete;
-            buffer_object& operator=(const buffer_object&) = delete;
+            buffer(const buffer&) = delete;
+            buffer& operator=(const buffer&) = delete;
 
             inline void bind() const {
                 glBindBuffer(GL_ARRAY_BUFFER, id);
