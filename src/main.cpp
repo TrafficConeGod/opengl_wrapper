@@ -86,14 +86,14 @@ int main() {
     gl::buffer_object<glm::vec2> vertex_uv_buf;
     vertex_uv_buf.set_data(gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
 
+    program.use();
+
     for (;;) {
         // Render
         gl::clear_frame({
             gl::enums::clear_frame_option::COLOR,
             gl::enums::clear_frame_option::DEPTH
         });
-
-        program.use();
 
         color_shift_value.x += 0.005f;
         color_shift_uniform.set(color_shift_value);
