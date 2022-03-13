@@ -54,10 +54,11 @@ int main() {
     );
     auto texture = gl::io::load_bmp(std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
     // gl::uniform matrix_uniform(program, "mvp");
-    // gl::uniform texture_uniform(program, "texture_sampler");
 
     glm::vec2 uv_shift_value(0.f, 0.f);
     gl::uniform<glm::vec2> uv_shift_uniform(program, "uv_shift_value");
+    gl::uniform<gl::texture&> texture_uniform(program, "tex_sampler");
+    texture_uniform.set(texture);
 
     auto vertices = {
         //
