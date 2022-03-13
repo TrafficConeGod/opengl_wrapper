@@ -3,7 +3,7 @@ using namespace gl;
 #include <stdexcept>
 #include "std_ext/interpret_as.hpp"
 
-texture io::load_bmp(std::ext::view<std::ext::byte> image_data) {
+texture io::load_bmp(u_char slot, std::ext::view<std::ext::byte> image_data) {
     if (image_data.size() <= 54) {
         throw std::runtime_error("invalid file size");
     }
@@ -30,6 +30,7 @@ texture io::load_bmp(std::ext::view<std::ext::byte> image_data) {
     }
 
     return gl::texture(
+        slot,
         width, height,
         std::ext::make_view<gl::ubyte>(image_data.begin() + data_pos, image_data.end())
     );

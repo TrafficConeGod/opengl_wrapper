@@ -52,8 +52,7 @@ int main() {
         std::ext::read_file_as_string("shaders/vert.glsl"),
         std::ext::read_file_as_string("shaders/frag.glsl")
     );
-    auto texture = gl::io::load_bmp(std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
-    // gl::uniform matrix_uniform(program, "mvp");
+    auto texture = gl::io::load_bmp(3, std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
 
     glm::vec2 uv_shift_value(0.f, 0.f);
     gl::uniform<glm::vec2> uv_shift_uniform(program, "uv_shift_value");

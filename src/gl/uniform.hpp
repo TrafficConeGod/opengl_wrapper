@@ -23,9 +23,10 @@ namespace gl {
 
     template<>
     inline void set_uniform<gl::texture&>(gl::uint id, gl::texture& value) {
-        glActiveTexture(GL_TEXTURE0);
+        auto slot = value.slot();
+        glActiveTexture(GL_TEXTURE0 + slot);
         value.bind();
-        glUniform1i(id, 0);
+        glUniform1i(id, slot);
     }
 
     template<typename T>
