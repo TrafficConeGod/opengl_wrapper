@@ -52,12 +52,12 @@ int main() {
         std::ext::read_file_as_string("shaders/vert.glsl"),
         std::ext::read_file_as_string("shaders/frag.glsl")
     );
-    auto texture = gl::io::load_bmp(program, std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
+    auto texture = gl::io::load_bmp(std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
-    glm::vec2 color_shift_value(0.f, 0.f);
-    gl::uniform<glm::vec2> color_shift_uniform(program, "color_shift_value");
+    glm::vec2 uv_shift_value(0.f, 0.f);
+    gl::uniform<glm::vec2> uv_shift_uniform(program, "uv_shift_value");
 
     auto vertices = {
         //
@@ -98,8 +98,8 @@ int main() {
             gl::enums::clear_frame_option::DEPTH
         });
 
-        color_shift_value.x += 0.005f;
-        color_shift_uniform.set(color_shift_value);
+        uv_shift_value.x += 0.005f;
+        uv_shift_uniform.set(uv_shift_value);
 
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);

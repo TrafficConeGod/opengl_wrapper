@@ -6,5 +6,5 @@
 #include <string>
 
 namespace gl::io {
-    texture load_bmp(shader_program& program, std::ext::view<std::ext::byte> image_data);
+    texture load_bmp(std::ext::view<std::ext::byte> image_data);
 }
