@@ -29,24 +29,8 @@ texture io::load_bmp(std::ext::view<std::ext::byte> image_data) {
         data_pos = 54;
     }
 
-    auto color_data = std::ext::make_view<std::ext::byte>(image_data.begin() + data_pos, image_data.end());
-
-    gl::texture texture;
-    texture.bind();
-
-    glTexImage2D(GL_TEXTURE_2D, 0,GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, color_data.data());
-
-	// Nice filtering, or ...
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
-
-	// ... ugly trilinear filtering ...
-	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	// ... which requires mipmaps. Generate them automatically.
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-    return texture;
+    return gl::texture(
+        width, height,
+        std::ext::make_view<gl::ubyte>(image_data.begin() + data_pos, image_data.end())
+    );
 }
