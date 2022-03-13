@@ -100,9 +100,7 @@ int main() {
 
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);
-
             gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf);
-
             gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
         }
 

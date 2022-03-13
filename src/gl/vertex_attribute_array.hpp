@@ -16,15 +16,13 @@ namespace gl {
         gl::uint layout_position;
 
         public:
-            template<typename B>
-            inline vertex_attribute_array(gl::uint layout_position, gl::uint dim, const buffer_object<B>& buf_obj) : layout_position(layout_position) {
+            inline vertex_attribute_array(gl::uint layout_position, gl::uint dim) : layout_position(layout_position) {
                 glEnableVertexAttribArray(layout_position);
-                buf_obj.bind();
                 set_vertex_attrib_pointer<T>(layout_position, dim);
             }
             template<typename B>
-            inline vertex_attribute_array(gl::uint layout_position, gl::uint dim, buffer_object<B>& buf_obj, gl::view<B> data_view) : layout_position(layout_position) {
-                buf_obj.set_data(data_view);
+            inline vertex_attribute_array(gl::uint layout_position, gl::uint dim, const buffer_object<B>& buf_obj) : layout_position(layout_position) {
+                buf_obj.bind();
                 glEnableVertexAttribArray(layout_position);
                 set_vertex_attrib_pointer<T>(layout_position, dim);
             }
