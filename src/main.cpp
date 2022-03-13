@@ -5,8 +5,11 @@
 #include "gl/buffer.hpp"
 #include "gl/vertex_attribute_array.hpp"
 #include "gl/uniform.hpp"
+#include "gl/texture.hpp"
+#include "gl/io/load_bmp.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
+#include <fmt/core.h>
 
 int main() {
     if (!glfwInit()) {
@@ -46,10 +49,10 @@ int main() {
     }
 
     gl::shader_program program(
-        gl::io::read_file("shaders/vert.glsl"),
-        gl::io::read_file("shaders/frag.glsl")
+        gl::io::read_file_as_string("shaders/vert.glsl"),
+        gl::io::read_file_as_string("shaders/frag.glsl")
     );
-    // auto texture = gl::io::load_texture<bmp_32_bpp_a8_r8_g8_b8>(program, "textures/test.bmp");
+    auto texture = gl::io::load_bmp(program, gl::make_view<gl::byte>(gl::io::read_file_as_binary("textures/test.bmp")));
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
