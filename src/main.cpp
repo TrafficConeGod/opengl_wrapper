@@ -1,12 +1,12 @@
 #include "glew/glew.hpp"
 #include "gl/core.hpp"
 #include "gl/shader_program.hpp"
-#include "gl/io/read_file.hpp"
 #include "gl/buffer.hpp"
 #include "gl/vertex_attribute_array.hpp"
 #include "gl/uniform.hpp"
 #include "gl/texture.hpp"
 #include "gl/io/load_bmp.hpp"
+#include "std_ext/read_file.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <fmt/core.h>
@@ -49,10 +49,10 @@ int main() {
     }
 
     gl::shader_program program(
-        gl::io::read_file_as_string("shaders/vert.glsl"),
-        gl::io::read_file_as_string("shaders/frag.glsl")
+        std::ext::read_file_as_string("shaders/vert.glsl"),
+        std::ext::read_file_as_string("shaders/frag.glsl")
     );
-    auto texture = gl::io::load_bmp(program, gl::make_view<gl::byte>(gl::io::read_file_as_binary("textures/test.bmp")));
+    auto texture = gl::io::load_bmp(program, std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
     // gl::uniform matrix_uniform(program, "mvp");
     // gl::uniform texture_uniform(program, "texture_sampler");
 
@@ -84,10 +84,10 @@ int main() {
     };
 
     gl::buffer<glm::vec2> vertex_pos_buf;
-    vertex_pos_buf.set_data(gl::make_view<glm::vec2>(vertices.begin(), vertices.end()));
+    vertex_pos_buf.set_data(std::ext::make_view<glm::vec2>(vertices.begin(), vertices.end()));
 
     gl::buffer<glm::vec2> vertex_uv_buf;
-    vertex_uv_buf.set_data(gl::make_view<glm::vec2>(uvs.begin(), uvs.end()));
+    vertex_uv_buf.set_data(std::ext::make_view<glm::vec2>(uvs.begin(), uvs.end()));
 
     program.use();
 

@@ -1,9 +1,8 @@
 #include "read_file.hpp"
-using namespace gl;
 #include <fstream>
 #include <iterator>
 
-std::string io::read_file_as_string(const fs::path& path) {
+std::string std::ext::read_file_as_string(const fs::path& path) {
     std::ifstream file(path);
     if (!file.is_open()) {
         throw std::runtime_error("Could not open file: " + path.string());
@@ -13,7 +12,7 @@ std::string io::read_file_as_string(const fs::path& path) {
     return buffer.str();
 }
 
-std::vector<byte> io::read_file_as_binary(const fs::path& path) {
+std::vector<std::ext::byte> std::ext::read_file_as_binary(const fs::path& path) {
     std::ifstream file(path, std::ios::binary);
     file.unsetf(std::ios::skipws);
 

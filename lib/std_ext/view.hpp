@@ -2,8 +2,9 @@
 #include <cstdint>
 #include <vector>
 #include <stdexcept>
+#include "interpret_as.hpp"
 
-namespace gl {
+namespace std::ext {
     template<typename T>
     class view {
         const T* data_;

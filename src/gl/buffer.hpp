@@ -1,6 +1,6 @@
 #pragma once
 #include "types.hpp"
-#include "view.hpp"
+#include "std_ext/view.hpp"
 
 namespace gl {
     template<typename T>
@@ -17,7 +17,7 @@ namespace gl {
                 glBindBuffer(GL_ARRAY_BUFFER, id);
             }
 
-            inline void set_data(gl::view<T> data_view) {
+            inline void set_data(std::ext::view<T> data_view) {
                 bind();
                 glBufferData(GL_ARRAY_BUFFER, data_view.size() * sizeof(T), data_view.data(), GL_STATIC_DRAW);
             }

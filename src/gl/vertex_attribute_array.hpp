@@ -1,6 +1,5 @@
 #pragma once
 #include "buffer.hpp"
-#include "view.hpp"
 
 namespace gl {
     template<typename T>
