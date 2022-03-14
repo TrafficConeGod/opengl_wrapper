@@ -8,10 +8,11 @@ texture::texture(u_char slot_, std::ext::view<mipmap> mipmaps) {
 
     bind();
 
+    std::size_t level = 0;
     for (auto& mipmap : mipmaps) {
         glTexImage2D(
             GL_TEXTURE_2D,
-            0,
+            level,
             (GLint)mipmap.internal_format,
             mipmap.width,
             mipmap.height,
@@ -20,6 +21,7 @@ texture::texture(u_char slot_, std::ext::view<mipmap> mipmaps) {
             GL_UNSIGNED_BYTE,
             mipmap.data.data()
         );
+        level++;
     }
 
     // Nice filtering, or ...
