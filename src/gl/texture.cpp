@@ -1,12 +1,13 @@
 #include "texture.hpp"
 using namespace gl;
 
-texture::texture(u_char slot_, std::ext::view<mipmap> mipmaps) {
+texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipmap> mipmaps, gl::int_ unpack_alignment) {
     slot(slot_);
 
     glGenTextures(1, &id);
 
     bind();
+    glPixelStorei(GL_UNPACK_ALIGNMENT, unpack_alignment);
 
     std::size_t level = 0;
     for (auto& mipmap : mipmaps) {
@@ -24,15 +25,9 @@ texture::texture(u_char slot_, std::ext::view<mipmap> mipmaps) {
         level++;
     }
 
-    // Nice filtering, or ...
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
-
-    // ... ugly trilinear filtering ...
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    // ... which requires mipmaps. Generate them automatically.
+    for (auto& param : params) {
+        glTexParameteri(GL_TEXTURE_2D, (GLenum)param.type, (GLint)param.value);
+    }
+    
     glGenerateMipmap(GL_TEXTURE_2D);
 }

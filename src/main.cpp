@@ -52,7 +52,13 @@ int main() {
         std::ext::read_file_as_string("shaders/vert.glsl"),
         std::ext::read_file_as_string("shaders/frag.glsl")
     );
-    auto texture = gl::io::load_bmp(3, std::ext::read_file_as_binary("textures/test.bmp"));
+    std::initializer_list<gl::texture::param> tex_params = {
+        { gl::enums::general::TEXTURE_WRAP_S, gl::enums::general::REPEAT },
+        { gl::enums::general::TEXTURE_WRAP_T, gl::enums::general::REPEAT },
+        { gl::enums::general::TEXTURE_MAG_FILTER, gl::enums::general::NEAREST },
+        { gl::enums::general::TEXTURE_MIN_FILTER, gl::enums::general::NEAREST }
+    };
+    auto texture = gl::io::load_bmp(3, tex_params, std::ext::read_file_as_binary("textures/test.bmp"));
 
     glm::vec2 uv_shift_value(0.f, 0.f);
     gl::uniform<glm::vec2> uv_shift_uniform(program, "uv_shift_value");

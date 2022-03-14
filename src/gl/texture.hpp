@@ -10,15 +10,26 @@ namespace gl {
         u_char current_slot;
         public:
             struct mipmap {
-                bool compressed = false;
                 enums::general internal_format;
                 gl::size_t width;
                 gl::size_t height;
                 enums::general input_format;
                 std::ext::view<gl::ubyte> data;
             };
+            struct compressed_mipmap {
+                enums::general internal_format;
+                gl::size_t width;
+                gl::size_t height;
+                std::ext::view<gl::ubyte> data;
+            };
 
-            texture(u_char slot_, std::ext::view<mipmap> mipmaps);
+            struct param {
+                enums::general type;
+                enums::general value;
+            };
+    
+            texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipmap> mipmaps, gl::int_ unpack_alignment = 4);
+            // texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps, gl::int_ unpack_alignment = 4);
             texture(const texture&) = delete;
             texture& operator=(const texture&) = delete;
 
