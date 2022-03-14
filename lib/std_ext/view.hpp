@@ -17,6 +17,18 @@ namespace std::ext {
 
             inline view(const T* data_, std::size_t size_) : data_(data_), size_(size_) {}
 
+            #pragma GCC diagnostic push
+            #pragma GCC diagnostic ignored "-Winit-list-lifetime"
+            template<typename C>
+            inline view(const C& container) : data_(&(*container.begin())), size_(container.end() - container.begin()) {}
+            #pragma GCC diagnostic pop
+
+            #pragma GCC diagnostic push
+            #pragma GCC diagnostic ignored "-Winit-list-lifetime"
+            template<typename I>
+            inline view(I begin, I end) : data_(&(*begin)), size_(end - begin) {}
+            #pragma GCC diagnostic pop
+
             inline const T* data() const { return data_; }
             inline std::size_t size() const { return size_; }
 
@@ -31,26 +43,4 @@ namespace std::ext {
             inline const_iterator begin() const { return const_iterator(data_); }
             inline const_iterator end() const { return const_iterator(data_ + size_); }
     };
-
-    template<typename C>
-    inline auto make_view(const C& container) {
-        return view<
-            std::remove_const_t<
-                typename std::iterator_traits<typename C::const_iterator>::value_type
-            >
-        >(
-            &(*container.begin()), container.end() - container.begin()
-        );
-    }
-
-    template<typename I>
-    inline auto make_view(I begin, I end) {
-        return view<
-            std::remove_const_t<
-                typename std::iterator_traits<I>::value_type
-            >
-        >(
-            &(*begin), end - begin
-        );
-    }
 }

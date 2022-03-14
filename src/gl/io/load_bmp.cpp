@@ -32,6 +32,6 @@ texture io::load_bmp(u_char slot, std::ext::view<std::ext::byte> image_data) {
     return gl::texture(
         slot,
         width, height,
-        std::ext::make_view(image_data.begin() + data_pos, image_data.end())
+        {image_data.begin() + data_pos, image_data.end()}
     );
 }
