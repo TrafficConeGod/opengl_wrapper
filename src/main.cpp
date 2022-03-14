@@ -52,7 +52,7 @@ int main() {
         std::ext::read_file_as_string("shaders/vert.glsl"),
         std::ext::read_file_as_string("shaders/frag.glsl")
     );
-    auto texture = gl::io::load_bmp(3, std::ext::make_view<std::ext::byte>(std::ext::read_file_as_binary("textures/test.bmp")));
+    auto texture = gl::io::load_bmp(3, std::ext::make_view(std::ext::read_file_as_binary("textures/test.bmp")));
 
     glm::vec2 uv_shift_value(0.f, 0.f);
     gl::uniform<glm::vec2> uv_shift_uniform(program, "uv_shift_value");
@@ -79,10 +79,10 @@ int main() {
     };
 
     gl::buffer<glm::vec2> vertex_pos_buf;
-    vertex_pos_buf.set_data(std::ext::make_view<glm::vec2>(vertices));
+    vertex_pos_buf.set_data(std::ext::make_view(vertices));
 
     gl::buffer<glm::vec2> vertex_uv_buf;
-    vertex_uv_buf.set_data(std::ext::make_view<glm::vec2>(uvs));
+    vertex_uv_buf.set_data(std::ext::make_view(uvs));
 
     program.use();
 
@@ -99,7 +99,7 @@ int main() {
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);
             gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf);
-            gl::draw_elements(gl::enums::draw_mode::TRIANGLES, std::ext::make_view<gl::uint>(indices));
+            gl::draw_elements(gl::enums::draw_mode::TRIANGLES, std::ext::make_view(indices));
         }
 
         glfwSwapBuffers(win);

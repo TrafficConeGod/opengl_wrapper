@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <vector>
+#include <iterator>
 #include <stdexcept>
 #include "interpret_as.hpp"
 
@@ -32,9 +32,9 @@ namespace std::ext {
             inline const_iterator end() const { return const_iterator(data_ + size_); }
     };
 
-    template<typename T, typename C>
-    inline view<T> make_view(const C& container) { return view<T>(&(*container.begin()), container.end() - container.begin()); }
+    template<typename C>
+    inline view<std::remove_const_t<typename std::iterator_traits<typename C::const_iterator>::value_type>> make_view(const C& container) { return view<std::remove_const_t<typename std::iterator_traits<typename C::const_iterator>::value_type>>(&(*container.begin()), container.end() - container.begin()); }
 
-    template<typename T, typename I>
-    inline view<T> make_view(I begin, I end) { return view<T>(&(*begin), end - begin); }
+    template<typename I>
+    inline view<std::remove_const_t<typename std::iterator_traits<I>::value_type>> make_view(I begin, I end) { return view<std::remove_const_t<typename std::iterator_traits<I>::value_type>>(&(*begin), end - begin); }
 }
