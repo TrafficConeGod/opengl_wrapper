@@ -1,7 +1,9 @@
 #pragma once
-#include "enums/general.hpp"
 #include "enums/toggle.hpp"
 #include "enums/clear_frame_option.hpp"
+#include "enums/depth_func.hpp"
+#include "enums/blend_func.hpp"
+#include "enums/draw_mode.hpp"
 #include "types.hpp"
 #include <glm/glm.hpp>
 #include <initializer_list>
@@ -10,10 +12,10 @@ namespace gl {
     inline void enable(enums::toggle toggle) {
         glEnable((gl::enum_)toggle);
     }
-    inline void set_depth_func(enums::general func) {
+    inline void set_depth_func(enums::depth_func func) {
         glDepthFunc((gl::enum_)func);
     }
-    inline void set_blend_func(enums::general src, enums::general dst) {
+    inline void set_blend_func(enums::blend_func src, enums::blend_func dst) {
         glBlendFunc((gl::enum_)src, (gl::enum_)dst);
     }
     inline void set_clear_color(glm::vec3 color) {
@@ -37,7 +39,7 @@ namespace gl {
         glClear(mask);
     }
 
-    inline void draw_attribute_arrays(enums::general mode, gl::size_t count) {
+    inline void draw_attribute_arrays(enums::draw_mode mode, gl::size_t count) {
         glDrawArrays((gl::enum_)mode, 0, count);
     }
 }

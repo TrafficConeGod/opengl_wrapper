@@ -40,8 +40,8 @@ int main() {
         enable(toggle::CULL_FACE);
         enable(toggle::BLEND);
 
-        set_depth_func(general::LESS);
-        set_blend_func(general::SRC_ALPHA, general::ONE_MINUS_SRC_ALPHA);
+        set_depth_func(depth_func::LESS);
+        set_blend_func(blend_func::SRC_ALPHA, blend_func::ONE_MINUS_SRC_ALPHA);
 
         set_clear_color(glm::vec3(44.f/256.f, 157.f/256.f, 222.f/256.f));
 
@@ -104,7 +104,7 @@ int main() {
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);
             gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf);
-            gl::draw_attribute_arrays(gl::enums::general::TRIANGLES, vertices.size());
+            gl::draw_attribute_arrays(gl::enums::draw_mode::TRIANGLES, vertices.size());
         }
 
         glfwSwapBuffers(win);
