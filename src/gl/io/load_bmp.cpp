@@ -29,9 +29,18 @@ texture io::load_bmp(u_char slot, std::ext::view<std::ext::byte> image_data) {
         data_pos = 54;
     }
 
+    auto mipmaps = {
+        gl::texture::mipmap{
+            .internal_format = enums::general::RGBA,
+            .width = (gl::size_t)width,
+            .height = (gl::size_t)height,
+            .input_format = enums::general::BGRA,
+            .data = {image_data.begin() + data_pos, image_data.end()}
+        }
+    };
+
     return gl::texture(
         slot,
-        width, height,
-        {image_data.begin() + data_pos, image_data.end()}
+        mipmaps
     );
 }

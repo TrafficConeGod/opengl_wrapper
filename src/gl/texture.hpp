@@ -1,6 +1,7 @@
 #pragma once
 #include "types.hpp"
 #include "std_ext/view.hpp"
+#include "enums/general.hpp"
 #include <stdexcept>
 
 namespace gl {
@@ -8,7 +9,16 @@ namespace gl {
         gl::uint id;
         u_char current_slot;
         public:
-            texture(u_char slot_, gl::uint width, gl::uint height, std::ext::view<gl::ubyte> data);
+            struct mipmap {
+                bool compressed = false;
+                enums::general internal_format;
+                gl::size_t width;
+                gl::size_t height;
+                enums::general input_format;
+                std::ext::view<gl::ubyte> data;
+            };
+
+            texture(u_char slot_, std::ext::view<mipmap> mipmaps);
             texture(const texture&) = delete;
             texture& operator=(const texture&) = delete;
 

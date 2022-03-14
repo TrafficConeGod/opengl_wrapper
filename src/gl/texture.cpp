@@ -1,14 +1,26 @@
 #include "texture.hpp"
 using namespace gl;
 
-texture::texture(u_char slot_, gl::uint width, gl::uint height, std::ext::view<gl::ubyte> data) {
+texture::texture(u_char slot_, std::ext::view<mipmap> mipmaps) {
     slot(slot_);
 
     glGenTextures(1, &id);
 
     bind();
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.data());
+    for (auto& mipmap : mipmaps) {
+        glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            (GLint)mipmap.internal_format,
+            mipmap.width,
+            mipmap.height,
+            0,
+            (GLenum)mipmap.input_format,
+            GL_UNSIGNED_BYTE,
+            mipmap.data.data()
+        );
+    }
 
     // Nice filtering, or ...
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
