@@ -33,7 +33,7 @@ namespace std::ext {
     };
 
     template<typename T, typename C>
-    inline view<T> make_view(const C& container) { return view<T>(container.data(), container.size()); }
+    inline view<T> make_view(const C& container) { return view<T>(&(*container.begin()), container.end() - container.begin()); }
 
     template<typename T, typename I>
     inline view<T> make_view(I begin, I end) { return view<T>(&(*begin), end - begin); }

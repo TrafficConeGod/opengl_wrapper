@@ -4,6 +4,7 @@
 #include "enums/depth_func.hpp"
 #include "enums/blend_func.hpp"
 #include "enums/draw_mode.hpp"
+#include "std_ext/view.hpp"
 #include "types.hpp"
 #include <glm/glm.hpp>
 #include <initializer_list>
@@ -39,7 +40,11 @@ namespace gl {
         glClear(mask);
     }
 
-    inline void draw_attribute_arrays(enums::draw_mode mode, gl::size_t count) {
+    inline void draw_arrays(enums::draw_mode mode, gl::size_t count) {
         glDrawArrays((gl::enum_)mode, 0, count);
+    }
+
+    inline void draw_elements(enums::draw_mode mode, std::ext::view<gl::uint> indices) {
+        glDrawElements((gl::enum_)mode, indices.size(), GL_UNSIGNED_INT, indices.data());
     }
 }

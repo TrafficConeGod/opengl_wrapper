@@ -60,34 +60,29 @@ int main() {
     texture_uniform.set(texture);
 
     auto vertices = {
-        //
+        glm::vec2(1, 1),
+        glm::vec2(-1, 1),
         glm::vec2(-1, -1),
-        glm::vec2(1, -1),
-        glm::vec2(-1, 1),
-        //
-        glm::vec2(-1, 1),
-        glm::vec2(1, -1),
-        glm::vec2(1, 1)
-        //
+        glm::vec2(1, -1)
     };
 
     auto uvs = {
-        //
+        glm::vec2(1, 1),
+        glm::vec2(0, 1),
         glm::vec2(0, 0),
-        glm::vec2(1, 0),
-        glm::vec2(0, 1),
-        //
-        glm::vec2(0, 1),
-        glm::vec2(1, 0),
-        glm::vec2(1, 1)
-        //
+        glm::vec2(1, 0)
+    };
+
+    auto indices = {
+        0u, 1u, 2u,
+        0u, 2u, 3u
     };
 
     gl::buffer<glm::vec2> vertex_pos_buf;
-    vertex_pos_buf.set_data(std::ext::make_view<glm::vec2>(vertices.begin(), vertices.end()));
+    vertex_pos_buf.set_data(std::ext::make_view<glm::vec2>(vertices));
 
     gl::buffer<glm::vec2> vertex_uv_buf;
-    vertex_uv_buf.set_data(std::ext::make_view<glm::vec2>(uvs.begin(), uvs.end()));
+    vertex_uv_buf.set_data(std::ext::make_view<glm::vec2>(uvs));
 
     program.use();
 
@@ -104,7 +99,7 @@ int main() {
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);
             gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf);
-            gl::draw_attribute_arrays(gl::enums::draw_mode::TRIANGLES, vertices.size());
+            gl::draw_elements(gl::enums::draw_mode::TRIANGLES, std::ext::make_view<gl::uint>(indices));
         }
 
         glfwSwapBuffers(win);
