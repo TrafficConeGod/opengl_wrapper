@@ -33,8 +33,24 @@ namespace std::ext {
     };
 
     template<typename C>
-    inline view<std::remove_const_t<typename std::iterator_traits<typename C::const_iterator>::value_type>> make_view(const C& container) { return view<std::remove_const_t<typename std::iterator_traits<typename C::const_iterator>::value_type>>(&(*container.begin()), container.end() - container.begin()); }
+    inline auto make_view(const C& container) {
+        return view<
+            std::remove_const_t<
+                typename std::iterator_traits<typename C::const_iterator>::value_type
+            >
+        >(
+            &(*container.begin()), container.end() - container.begin()
+        );
+    }
 
     template<typename I>
-    inline view<std::remove_const_t<typename std::iterator_traits<I>::value_type>> make_view(I begin, I end) { return view<std::remove_const_t<typename std::iterator_traits<I>::value_type>>(&(*begin), end - begin); }
+    inline auto make_view(I begin, I end) {
+        return view<
+            std::remove_const_t<
+                typename std::iterator_traits<I>::value_type
+            >
+        >(
+            &(*begin), end - begin
+        );
+    }
 }
