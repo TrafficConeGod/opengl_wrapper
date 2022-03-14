@@ -2,7 +2,7 @@ OBJECTS = $(patsubst %.cpp,%.o, $(shell find . -name *.cpp))
 CC = g++
 CFLAGS = -c -I lib -I src -I src/gl -Wall -std=c++17 -g
 
-LDFLAGS = -pthread -lfmt -lGL -lglut -lGLEW -lglfw -lm -lX11 -lpthread -lXi -lXrandr -lfmt
+LDFLAGS = -lGL -lglut -lGLEW -lglfw -lm -lX11 -lpthread -lXi -lXrandr -lfmt
 
 OUT_FILE = app.elf
 
