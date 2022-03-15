@@ -39,9 +39,9 @@ gl::texture io::load_bmp(u_char slot, std::ext::view<gl::texture::param> params,
         }
     };
 
-    return gl::texture(
+    return {
         slot,
         params,
         mipmaps
-    );
+    };
 }
