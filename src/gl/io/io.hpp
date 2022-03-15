@@ -7,4 +7,5 @@
 
 namespace gl::io {
     texture load_bmp(u_char slot, std::ext::view<gl::texture::param> params, std::ext::view<std::ext::byte> image_data);
+    texture load_dds(u_char slot, std::ext::view<gl::texture::param> params, std::ext::view<std::ext::byte> image_data);
 }
