@@ -19,21 +19,21 @@ gl::texture io::load_dds(u_char slot, std::ext::view<gl::texture::param> params,
     const auto mip_map_count = std::ext::interpret_as<uint>(header + 24, image_data.end());
     const auto four_cc_type = std::ext::interpret_as<four_cc>(header + 80, image_data.end());
 
-    enums::general format;
+    enums::compressed_image_format format;
     switch (four_cc_type) { 
 		case four_cc::DXT1: 
-			format = enums::general::COMPRESSED_RGBA_S3TC_DXT1_EXT; 
+			format = enums::compressed_image_format::RGBA_S3TC_DXT1_EXT; 
 			break; 
 		case four_cc::DXT3: 
-			format = enums::general::COMPRESSED_RGBA_S3TC_DXT3_EXT; 
+			format = enums::compressed_image_format::RGBA_S3TC_DXT3_EXT; 
 			break; 
 		case four_cc::DXT5: 
-			format = enums::general::COMPRESSED_RGBA_S3TC_DXT5_EXT; 
+			format = enums::compressed_image_format::RGBA_S3TC_DXT5_EXT; 
 			break; 
 		default: 
 			throw std::runtime_error("unsupported format");
 	}
-    const auto block_size = (format == enums::general::COMPRESSED_RGBA_S3TC_DXT1_EXT) ? 8 : 16;
+    const auto block_size = (format == enums::compressed_image_format::RGBA_S3TC_DXT1_EXT) ? 8 : 16;
 
     std::vector<gl::texture::compressed_mipmap> mipmaps;
 

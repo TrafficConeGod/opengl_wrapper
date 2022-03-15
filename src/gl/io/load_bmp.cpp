@@ -31,10 +31,10 @@ gl::texture io::load_bmp(u_char slot, std::ext::view<gl::texture::param> params,
 
     auto mipmaps = {
         gl::texture::mipmap{
-            .internal_format = enums::general::RGBA,
+            .internal_format = enums::image_format::RGBA,
             .width = (gl::size_t)width,
             .height = (gl::size_t)height,
-            .input_format = enums::general::BGRA,
+            .input_format = enums::image_format::BGRA,
             .data = {image_data.begin() + data_pos, image_data.end()}
         }
     };

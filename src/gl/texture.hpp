@@ -1,6 +1,8 @@
 #pragma once
 #include "types.hpp"
 #include "std_ext/view.hpp"
+#include "enums/image_format.hpp"
+#include "enums/compressed_image_format.hpp"
 #include "enums/general.hpp"
 #include <stdexcept>
 
@@ -10,14 +12,14 @@ namespace gl {
         u_char current_slot;
         public:
             struct mipmap {
-                enums::general internal_format;
+                enums::image_format internal_format;
                 gl::size_t width;
                 gl::size_t height;
-                enums::general input_format;
+                enums::image_format input_format;
                 std::ext::view<gl::ubyte> data;
             };
             struct compressed_mipmap {
-                enums::general internal_format;
+                enums::compressed_image_format internal_format;
                 gl::size_t width;
                 gl::size_t height;
                 std::ext::view<gl::ubyte> data;
