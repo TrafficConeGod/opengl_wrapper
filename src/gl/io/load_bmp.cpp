@@ -1,4 +1,4 @@
-#include "load_bmp.hpp"
+#include "io.hpp"
 using namespace gl;
 #include <stdexcept>
 #include "std_ext/interpret_as.hpp"

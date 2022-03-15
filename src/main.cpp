@@ -5,7 +5,7 @@
 #include "gl/vertex_attribute_array.hpp"
 #include "gl/uniform.hpp"
 #include "gl/texture.hpp"
-#include "gl/io/load_bmp.hpp"
+#include "gl/io/io.hpp"
 #include "std_ext/read_file.hpp"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
