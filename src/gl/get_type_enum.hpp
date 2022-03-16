@@ -3,9 +3,7 @@
 
 namespace gl {
     template<typename T>
-    struct get_type_enum {
-        
-    };
+    struct get_type_enum {};
 
     template<>
     struct get_type_enum<gl::byte> {

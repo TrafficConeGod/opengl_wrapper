@@ -1,15 +1,9 @@
 #pragma once
 #include "buffer.hpp"
+#include "get_type_enum.hpp"
+#include "get_set_vertex_attrib_pointer_function.hpp"
 
 namespace gl {
-    template<typename T>
-    inline void set_vertex_attrib_pointer(gl::uint layout_position, gl::uint dim) = delete;
-
-    template<>
-    inline void set_vertex_attrib_pointer<float>(gl::uint layout_position, gl::uint dim) {
-        glVertexAttribPointer(layout_position, dim, GL_FLOAT, GL_FALSE, 0, 0);
-    }
-
     template<typename T>
     class vertex_attribute_array {
         gl::uint layout_position;
@@ -17,13 +11,13 @@ namespace gl {
         public:
             inline vertex_attribute_array(gl::uint layout_position, gl::uint dim) : layout_position(layout_position) {
                 glEnableVertexAttribArray(layout_position);
-                set_vertex_attrib_pointer<T>(layout_position, dim);
+                get_set_vertex_attrib_pointer_function<T>::value(layout_position, dim, (gl::enum_)get_type_enum<T>::value, 0, 0);
             }
             template<typename B>
             inline vertex_attribute_array(gl::uint layout_position, gl::uint dim, const buffer<B>& buf_obj) : layout_position(layout_position) {
                 buf_obj.bind();
                 glEnableVertexAttribArray(layout_position);
-                set_vertex_attrib_pointer<T>(layout_position, dim);
+                get_set_vertex_attrib_pointer_function<T>::value(layout_position, dim, (gl::enum_)get_type_enum<T>::value, 0, 0);
             }
             inline ~vertex_attribute_array() {
                 glDisableVertexAttribArray(layout_position);
