@@ -1,34 +1,11 @@
 #pragma once
 #include "types.hpp"
 #include "shader_program.hpp"
-#include "texture.hpp"
+#include "get_set_uniform_function.hpp"
 #include <string>
 #include <glm/glm.hpp>
 
 namespace gl {
-    class texture;
-
-    template<typename T>
-    inline void set_uniform(gl::uint id, T value) = delete;
-
-    template<>
-    inline void set_uniform<float>(gl::uint id, float value) {
-        glUniform1f(id, value);
-    };
-
-    template<>
-    inline void set_uniform<glm::vec2>(gl::uint id, glm::vec2 value) {
-        glUniform2f(id, value.x, value.y);
-    };
-
-    template<>
-    inline void set_uniform<gl::texture&>(gl::uint id, gl::texture& value) {
-        auto slot = value.slot();
-        glActiveTexture(GL_TEXTURE0 + slot);
-        value.bind();
-        glUniform1i(id, slot);
-    }
-
     template<typename T>
     class uniform {
         gl::uint id;
@@ -38,7 +15,7 @@ namespace gl {
             uniform& operator=(const uniform&) = delete;
 
             inline void set(T value) {
-                set_uniform<T>(id, value);
+                get_set_uniform_function<T>::value(id, &value);
             }
     };
 }
