@@ -39,7 +39,7 @@ namespace gl {
                 glBindTexture(GL_TEXTURE_2D, id);
             }
 
-            inline u_char slot() const {
+            [[nodiscard]] inline u_char slot() const {
                 if (current_slot == 0xff) {
                     throw std::runtime_error("texture not in slot");
                 }
