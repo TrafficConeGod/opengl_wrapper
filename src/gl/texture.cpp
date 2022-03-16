@@ -13,11 +13,11 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipm
         glTexImage2D(
             GL_TEXTURE_2D,
             level,
-            (GLint)mipmap.internal_format,
+            (gl::int_)mipmap.internal_format,
             mipmap.width,
             mipmap.height,
             0,
-            (GLenum)mipmap.input_format,
+            (gl::enum_)mipmap.input_format,
             GL_UNSIGNED_BYTE,
             mipmap.data.data()
         );
@@ -25,7 +25,7 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipm
     }
 
     for (auto& param : params) {
-        glTexParameteri(GL_TEXTURE_2D, (GLenum)param.type, (GLint)param.value);
+        glTexParameteri(GL_TEXTURE_2D, (gl::enum_)param.type, (gl::int_)param.value);
     }
 
     glGenerateMipmap(GL_TEXTURE_2D);
@@ -44,7 +44,7 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<comp
         glCompressedTexImage2D(
             GL_TEXTURE_2D,
             level,
-            (GLenum)mipmap.internal_format,
+            (gl::enum_)mipmap.internal_format,
             mipmap.width,
             mipmap.height,
 			0,
@@ -55,6 +55,6 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<comp
     }
 
     for (auto& param : params) {
-        glTexParameteri(GL_TEXTURE_2D, (GLenum)param.type, (GLint)param.value);
+        glTexParameteri(GL_TEXTURE_2D, (gl::enum_)param.type, (gl::int_)param.value);
     }
 }
