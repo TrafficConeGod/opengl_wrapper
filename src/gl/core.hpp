@@ -4,6 +4,7 @@
 #include "enums/depth_func.hpp"
 #include "enums/blend_func.hpp"
 #include "enums/draw_mode.hpp"
+#include "buffer.hpp"
 #include "std_ext/view.hpp"
 #include "types.hpp"
 #include <glm/glm.hpp>
@@ -45,6 +46,6 @@ namespace gl {
     }
 
     inline void draw_elements(enums::draw_mode mode, std::ext::view<gl::uint> indices) {
-        glDrawElements((gl::enum_)mode, indices.size(), GL_UNSIGNED_INT, indices.data());
+        glDrawElements((gl::enum_)mode, indices.size() * sizeof(gl::uint), GL_UNSIGNED_INT, indices.data());
     }
 }
