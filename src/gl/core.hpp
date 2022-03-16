@@ -7,6 +7,7 @@
 #include "buffer.hpp"
 #include "std_ext/view.hpp"
 #include "types.hpp"
+#include "get_type_enum.hpp"
 #include <glm/glm.hpp>
 #include <initializer_list>
 
@@ -45,7 +46,8 @@ namespace gl {
         glDrawArrays((gl::enum_)mode, 0, count);
     }
 
-    inline void draw_elements(enums::draw_mode mode, std::ext::view<gl::uint> indices) {
-        glDrawElements((gl::enum_)mode, indices.size() * sizeof(gl::uint), GL_UNSIGNED_INT, indices.data());
+    template<typename T>
+    inline void draw_elements(enums::draw_mode mode, std::ext::view<T> indices) {
+        glDrawElements((gl::enum_)mode, indices.size() * sizeof(T), (gl::enum_)gl::get_type_enum<T>::value, indices.data());
     }
 }

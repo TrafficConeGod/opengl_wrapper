@@ -79,9 +79,9 @@ int main() {
         glm::vec2(1, 0)
     };
 
-    auto indices = {
-        0u, 1u, 2u,
-        0u, 2u, 3u
+    std::initializer_list<gl::ubyte> indices = {
+        0, 1, 2,
+        0, 2, 3
     };
 
     gl::buffer<glm::vec2> vertex_pos_buf;
@@ -105,7 +105,7 @@ int main() {
         {
             gl::vertex_attribute_array<float> vertex_pos_array(0, 2, vertex_pos_buf);
             gl::vertex_attribute_array<float> vertex_uv_array(1, 2, vertex_uv_buf);
-            gl::draw_elements(gl::enums::draw_mode::TRIANGLES, indices);
+            gl::draw_elements<gl::ubyte>(gl::enums::draw_mode::TRIANGLES, indices);
         }
 
         glfwSwapBuffers(win);
