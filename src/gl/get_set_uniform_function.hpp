@@ -56,17 +56,17 @@ namespace gl {
     }
 
     template<>
-    struct get_set_uniform_function<float> {
+    struct get_set_uniform_function<gl::float_> {
         constexpr static auto value = &set_uniform_1f;
     };
 
     template<>
-    struct get_set_uniform_function<int> {
+    struct get_set_uniform_function<gl::int_> {
         constexpr static auto value = &set_uniform_1i;
     };
 
     template<>
-    struct get_set_uniform_function<uint> {
+    struct get_set_uniform_function<gl::uint> {
         constexpr static auto value = &set_uniform_1i;
     };
 
