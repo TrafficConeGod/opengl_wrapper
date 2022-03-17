@@ -53,8 +53,8 @@ int main() {
         std::ext::read_file_as_string("shaders/frag.glsl")
     );
     auto texture = gl::io::load_bmp(3, {
-        .mag_filter = gl::enums::general::NEAREST,
-        .min_filter = gl::enums::general::NEAREST
+        .min_filter = gl::enums::minify_filter_func::NEAREST_MIPMAP_NEAREST,
+        .mag_filter = gl::enums::magnify_filter_func::NEAREST
     }, std::ext::read_file_as_binary("textures/test.bmp"));
 
     glm::vec2 uv_shift_value(0.f, 0.f);

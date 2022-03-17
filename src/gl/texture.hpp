@@ -3,6 +3,8 @@
 #include "std_ext/view.hpp"
 #include "enums/image_format.hpp"
 #include "enums/compressed_image_format.hpp"
+#include "enums/minify_filter_func.hpp"
+#include "enums/magnify_filter_func.hpp"
 #include "enums/general.hpp"
 #include <stdexcept>
 
@@ -28,8 +30,8 @@ namespace gl {
             struct parameters {
                 enums::general depth_stencil_mode = enums::general::DEPTH_COMPONENT;
                 gl::int_ base_level = 0;
-                enums::general mag_filter = enums::general::LINEAR;
-                enums::general min_filter = enums::general::LINEAR;
+                enums::minify_filter_func min_filter = enums::minify_filter_func::NEAREST_MIPMAP_LINEAR;
+                enums::magnify_filter_func mag_filter = enums::magnify_filter_func::LINEAR;
                 gl::float_ min_lod = -1000;
                 gl::float_ max_lod = 1000;
                 gl::int_ max_level = 1000;

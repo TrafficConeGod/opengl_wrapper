@@ -4,8 +4,8 @@ using namespace gl;
 void texture::init_params(const parameters& params) {
     glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_STENCIL_TEXTURE_MODE, (gl::enum_)params.depth_stencil_mode);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, params.base_level);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (gl::enum_)params.mag_filter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (gl::enum_)params.min_filter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (gl::enum_)params.mag_filter);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD, params.min_lod);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_LOD, params.max_lod);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, params.max_level);
