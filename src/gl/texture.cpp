@@ -31,13 +31,13 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipm
     glGenerateMipmap(GL_TEXTURE_2D);
 }
 
-texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps, gl::int_ unpack_alignment) {
+texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps) {
     slot(slot_);
 
     glGenTextures(1, &id);
 
     bind();
-	glPixelStorei(GL_UNPACK_ALIGNMENT, unpack_alignment);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     std::size_t level = 0;
     for (auto& mipmap : mipmaps) {

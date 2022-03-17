@@ -42,6 +42,6 @@ gl::texture io::load_bmp(u_char slot, std::ext::view<gl::texture::param> params,
     return {
         slot,
         params,
-        mipmaps
+        std::ext::view<gl::texture::mipmap>(mipmaps)
     };
 }

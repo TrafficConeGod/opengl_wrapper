@@ -31,7 +31,7 @@ namespace gl {
             };
     
             texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipmap> mipmaps);
-            texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps, gl::int_ unpack_alignment);
+            texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps);
             texture(const texture&) = delete;
             texture& operator=(const texture&) = delete;
 
