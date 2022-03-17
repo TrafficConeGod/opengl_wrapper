@@ -26,10 +26,19 @@ namespace gl {
             };
 
             struct parameters {
-                enums::general wrap_s = enums::general::REPEAT;
-                enums::general wrap_t = enums::general::REPEAT;
+                enums::general depth_stencil_mode = enums::general::DEPTH_COMPONENT;
+                gl::int_ base_level = 0;
                 enums::general mag_filter = enums::general::LINEAR;
                 enums::general min_filter = enums::general::LINEAR;
+                gl::float_ min_lod = -1000;
+                gl::float_ max_lod = 1000;
+                gl::int_ max_level = 1000;
+                enums::general swizzle_r = enums::general::RED;
+                enums::general swizzle_g = enums::general::GREEN;
+                enums::general swizzle_b = enums::general::BLUE;
+                enums::general swizzle_a = enums::general::ALPHA;
+                enums::general wrap_s = enums::general::REPEAT;
+                enums::general wrap_t = enums::general::REPEAT;
             };
             
             texture(u_char slot_, const parameters& params, std::ext::view<mipmap> mipmaps);
