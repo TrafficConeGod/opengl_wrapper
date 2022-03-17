@@ -1,7 +1,14 @@
 #include "texture.hpp"
 using namespace gl;
 
-texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipmap> mipmaps) {
+void texture::init_params(const parameters& params) {
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, (gl::enum_)params.wrap_s);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, (gl::enum_)params.wrap_t);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (gl::enum_)params.mag_filter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (gl::enum_)params.min_filter);
+}
+
+texture::texture(u_char slot_, const parameters& params, std::ext::view<mipmap> mipmaps) {
     slot(slot_);
 
     glGenTextures(1, &id);
@@ -24,14 +31,12 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipm
         level++;
     }
 
-    for (auto& param : params) {
-        glTexParameteri(GL_TEXTURE_2D, (gl::enum_)param.type, (gl::int_)param.value);
-    }
+    init_params(params);
 
     glGenerateMipmap(GL_TEXTURE_2D);
 }
 
-texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps) {
+texture::texture(u_char slot_, const parameters& params, std::ext::view<compressed_mipmap> mipmaps) {
     slot(slot_);
 
     glGenTextures(1, &id);
@@ -54,7 +59,5 @@ texture::texture(u_char slot_, std::ext::view<param> params, std::ext::view<comp
         level++;
     }
 
-    for (auto& param : params) {
-        glTexParameteri(GL_TEXTURE_2D, (gl::enum_)param.type, (gl::int_)param.value);
-    }
+    init_params(params);
 }

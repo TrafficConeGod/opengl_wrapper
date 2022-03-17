@@ -9,7 +9,7 @@ enum class four_cc : uint {
     DXT5 = 0x35545844
 };
 
-gl::texture io::load_dds(u_char slot, std::ext::view<gl::texture::param> params, std::ext::view<std::ext::byte> image_data) {
+gl::texture io::load_dds(u_char slot, const gl::texture::parameters& params, std::ext::view<std::ext::byte> image_data) {
     if (image_data[0] != 'D' || image_data[1] != 'D' || image_data[2] != 'S' || image_data[3] != ' ') {
         throw std::runtime_error("not a dds file");
     }

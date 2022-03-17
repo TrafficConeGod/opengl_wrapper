@@ -25,13 +25,15 @@ namespace gl {
                 std::ext::view<gl::ubyte> data;
             };
 
-            struct param {
-                enums::general type;
-                enums::general value;
+            struct parameters {
+                enums::general wrap_s = enums::general::REPEAT;
+                enums::general wrap_t = enums::general::REPEAT;
+                enums::general mag_filter = enums::general::LINEAR;
+                enums::general min_filter = enums::general::LINEAR;
             };
-    
-            texture(u_char slot_, std::ext::view<param> params, std::ext::view<mipmap> mipmaps);
-            texture(u_char slot_, std::ext::view<param> params, std::ext::view<compressed_mipmap> mipmaps);
+            
+            texture(u_char slot_, const parameters& params, std::ext::view<mipmap> mipmaps);
+            texture(u_char slot_, const parameters& params, std::ext::view<compressed_mipmap> mipmaps);
             texture(const texture&) = delete;
             texture& operator=(const texture&) = delete;
 
@@ -52,5 +54,7 @@ namespace gl {
                 }
                 current_slot = slot;
             }
+        private:
+            void init_params(const parameters& params);
     };
 }
